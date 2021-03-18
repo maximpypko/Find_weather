@@ -1,13 +1,6 @@
 class Weather {
 
-	// name = '';
-	// temp = 0;
-	// pressure = 0;
-	// humidity = 0;
-	// description = '';
-	// icon = '';
-	// windDeg = 0;
-	// windSpeed = 0;
+	
 
 	constructor() {
 		this.createRequest();
@@ -43,8 +36,59 @@ class Weather {
 		})
 	}
 
-	 createWindowWeather(data) {
-		// console.log(data);
+	renderWindowWeather(data) {
+		console.log(data);
+		const weatherWindow = document.querySelector('.weather')
+
+		weatherWindow.insertAdjacentHTML('afterbegin',
+			
+			`<div class = 'weather__header'>
+				<h2 class = 'weather__title'>${data.name}</h2>
+				<div class = 'weather__tempWrapper'>
+					<div class = 'weather__temp'>
+						${Math.round(data.main.temp - 273)}&deg
+					</div>
+					<div class = 'weather__iconWrapper'>
+						<img class = 'weather__icon'
+							src = 'http://openweathermap.org/img/wn/${data.weather[0].icon ||
+								'there is no data'}@2x.png'>
+						</img>
+						<p class = 'weather__description'>${data.weather[0].description}</p>
+					</div>
+				</div>
+			</div>
+
+			<div class = 'weather__main'>
+				<p class = 'weather__generalInformation'>${data.main.pressure}</p>
+				<p class = 'weather__generalInformation'>${data.main.humidity}%</p>
+				<p class = 'weather__generalInformation'>${data.wind.speed}km/h</p>
+			</div>
+
+			<div class = 'weather__footer'>
+				<div class ='weather__arrowWrapper'>
+					<svg class="weather__arrow" viewBox="0 0 100 85">
+						<polygon points="58.263,0.056 100,41.85 58.263,83.641 30.662,83.641 62.438,51.866 0,51.866 0,31.611 62.213,31.611 30.605,0 58.263,0.056" />
+					</svg>
+				</div>
+				<ul class = 'weather__compassBackground'>
+					<li class = 'weather__north'>N</li>
+					<li class = 'weather__south'>S</li>
+					<li class = 'weather__west'>W</li>
+					<li class = 'weather__east'>E</li>
+				</ul>
+			</div>`)
+
+
+		// name = '';
+		// temp = 0;
+		// pressure = 0;
+		// humidity = 0;
+		// windSpeed = 0;
+		// icon = '';
+		// description = '';
+		
+		// windDeg = 0;
+		
 	}
 	
 	request(url) {
@@ -54,7 +98,7 @@ class Weather {
 				return response.json()
 			})
 			.then(response => {
-				this.createWindowWeather(response);
+				this.renderWindowWeather(response);
 			})
 			.catch(error => {
 				console.log(error.message)

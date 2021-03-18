@@ -29,7 +29,7 @@ body {
     text-shadow: 1px 1px .3rem black;
     color: #2dc78c;
     
-    animation: getTitle ease-in .5s .1s;
+    animation: getTitle ease-in .5s .1s forwards;
 }
 
 @keyframes getTitle {
@@ -82,7 +82,7 @@ body {
     margin: 0 auto;
     padding: 1rem ;
     font-size: 1.3rem;
-    text-transform:uppercase ;
+    
 
     border:none;
     box-shadow: inset 0 0 7px 1px #009257;
@@ -98,6 +98,7 @@ body {
 .form__button {
     box-shadow: inset 0 0 7px 1px #015231;
     background: #72EFFF;
+    text-transform:uppercase;
 }
 .form__warning {
     position: absolute;
@@ -107,6 +108,48 @@ body {
     color: red;
 }
 .weather {
+    position: relative;
+    padding: 3rem;
     flex-basis: 60%;
     border: 1px solid black;
+}
+
+/* ##################################### */
+
+.weather__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weather__title,
+.weather__temp {
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: #205F61;
+}
+
+.weather__tempWrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.weather__temp {
+    font-size: 2.5rem;
+
+}
+
+.weather__iconWrapper {
+    
+    text-align: center;
+    box-shadow: inset 0 0 2rem 1rem white;
+    background: #79B8BA;
+}
+
+.weather__icon {
+    margin: 0 .5rem;
+}
+.weather__description {
+    font-size: .8rem;
 }
