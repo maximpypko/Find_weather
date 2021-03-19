@@ -34,46 +34,54 @@ class Weather {
 	}
 
 	renderWindowWeather(data) {
-		// console.log(data);
+		console.log(data);
 		const weatherWindow = document.querySelector('.weather')
+		if (weatherWindow.firstChild) {
+			weatherWindow.firstChild.remove();
+		}
 
 		weatherWindow.insertAdjacentHTML('afterbegin',
 			
-			`<div class = 'weather__header'>
-				<h2 class = 'weather__title'>${data.name}</h2>
-				<div class = 'weather__tempWrapper'>
-					<div class = 'weather__temp'>
-						${Math.round(data.main.temp - 273)}&deg
-					</div>
-					<div class = 'weather__iconWrapper'>
-						<img class = 'weather__icon'
-							src = 'http://openweathermap.org/img/wn/${data.weather[0].icon ||
-								'there is no data'}@2x.png'>
-						</img>
-						<p class = 'weather__description'>${data.weather[0].description}</p>
+			`<div class = 'weather__contentWrapper'>
+				<div class = 'weather__header'>
+					<h2 class = 'weather__title'>${data.name}</h2>
+					<div class = 'weather__tempWrapper'>
+						<div class = 'weather__temp'>
+							${Math.round(data.main.temp - 273)}&deg
+						</div>
+						<div class = 'weather__iconWrapper'>
+							<img class = 'weather__icon'
+								src = 'http://openweathermap.org/img/wn/${data.weather[0].icon ||
+									'there is no data'}@2x.png'>
+							</img>
+							<p class = 'weather__description'>${data.weather[0].description}</p>
+						</div>
 					</div>
 				</div>
-			</div>
-
-			<div class = 'weather__main'>
-				<p class = 'weather__generalInformation'>${data.main.pressure}</p>
-				<p class = 'weather__generalInformation'>${data.main.humidity}%</p>
-				<p class = 'weather__generalInformation'>${data.wind.speed}km/h</p>
-			</div>
-
-			<div class = 'weather__footer'>
-				<div class ='weather__arrowWrapper'>
-					<svg class="weather__arrow" viewBox="0 0 100 85">
-						<polygon points="58.263,0.056 100,41.85 58.263,83.641 30.662,83.641 62.438,51.866 0,51.866 0,31.611 62.213,31.611 30.605,0 58.263,0.056" />
+				<div class = 'weather__main'>
+					<p class = 'weather__info'>Pressure ${data.main.pressure * 0,750} mm Hg </p>
+					<p class = 'weather__info'>Humidity ${data.main.humidity}% </p>
+					<p class = 'weather__info'>Wind speed ${data.wind.speed} km/h </p>
+					<p class = 'weather__info'>Visibility ${data.visibility / 1000} km </p>
+				</div>
+					
+				<div class = 'weather__compassWrapper'>
+					<div class ='weather__arrowWrapper'>
+					<svg class = 'weather__arrow' viewBox="0 0 180 85">
+						<polygon
+							points="98.263,0.056 180,41.85 98.263,83.641 70.662,83.641 122.438,51.866 0,51.866 0,31.611 122.213,31.611 70.605,0 58.263,0.056" />
 					</svg>
-				</div>
-				<ul class = 'weather__compassBackground'>
-					<li class = 'weather__north'>N</li>
-					<li class = 'weather__south'>S</li>
-					<li class = 'weather__west'>W</li>
-					<li class = 'weather__east'>E</li>
-				</ul>
-			</div>`)
+					</div>
+					<ul class = 'weather__compassBackground'>
+						<li class = 'weather__north'>N</li>
+						<li class = 'weather__south'>S</li>
+						<li class = 'weather__west'>W</li>
+						<li class = 'weather__east'>E</li>
+					</ul>
+				</div>	
+				
+			</div>`
+		)
 	}
 	
 	request(url) {
