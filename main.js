@@ -18,7 +18,7 @@ class Weather {
 					$cityName.style.boxShadow = 'inset 0 0 7px 1px #009257';
 				}
 				
-				const url = `http://api.openweathermap.org/data/2.5/weather?q=${$cityName.value}&appid=4de0326522afcc173524251c3d641fec`;
+				const url = `https://api.openweathermap.org/data/2.5/weather?q=${$cityName.value}&appid=4de0326522afcc173524251c3d641fec`;
 				$cityName.value = '';
 				this.request(url)
 
