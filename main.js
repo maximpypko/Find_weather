@@ -1,7 +1,4 @@
 class Weather {
-
-	
-
 	constructor() {
 		this.createRequest();
 	}
@@ -37,7 +34,7 @@ class Weather {
 	}
 
 	renderWindowWeather(data) {
-		console.log(data);
+		// console.log(data);
 		const weatherWindow = document.querySelector('.weather')
 
 		weatherWindow.insertAdjacentHTML('afterbegin',
@@ -77,23 +74,11 @@ class Weather {
 					<li class = 'weather__east'>E</li>
 				</ul>
 			</div>`)
-
-
-		// name = '';
-		// temp = 0;
-		// pressure = 0;
-		// humidity = 0;
-		// windSpeed = 0;
-		// icon = '';
-		// description = '';
-		
-		// windDeg = 0;
-		
 	}
 	
 	request(url) {
 		
-		 fetch(url)
+		 fetch(url, {method:'POST'})
 			.then(function (response){
 				return response.json()
 			})
@@ -103,10 +88,7 @@ class Weather {
 			.catch(error => {
 				console.log(error.message)
 			});
-	
 	}
-
-	
 }
 
 new Weather();
