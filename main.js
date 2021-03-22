@@ -11,7 +11,7 @@ class Weather {
 			e.preventDefault()
 
 			if (this.$cityName.value.trim()) {
-				console.log('qwer');
+		
 				if (this.$form.children.length === 3) {
 					this.$form.children[0].remove();
 				}
@@ -72,6 +72,7 @@ class Weather {
 					</div>
 					
 					<div class = 'weather__compassWrapper'>
+						
 						<div class ='weather__arrowWrapper'>
 							<svg class = 'weather__arrow' viewBox="0 0 180 85">
 								<polygon
