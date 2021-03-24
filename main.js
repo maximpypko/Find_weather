@@ -1,14 +1,14 @@
 class Weather {
-	$form = document.querySelector('form')
-	$cityName = document.querySelector('.form__cityName')
-	$button = document.querySelector('button')
+	$form = document.querySelector('form');
+	$cityName = document.querySelector('.form__cityName');
+	$button = document.querySelector('button');
 	constructor() {
 		this.createRequest();
 	}
 	
 	createRequest() {
 		this.$button.addEventListener('click', (e) => {
-			e.preventDefault()
+			e.preventDefault();
 
 			if (this.$cityName.value.trim()) {
 		
@@ -21,14 +21,29 @@ class Weather {
 				this.$cityName.value = '';
 
 			} else {
-				this.createWarningText()
+				this.createWarningText();
 			}
 		})
 	}
 
+	request(url, $cityName) {
+		fetch(url, {method:'POST'})
+		   .then(function (response){
+			   return response.json();
+		   })
+		   .then(response => {
+			   this.renderWindowWeather(response);
+		   })
+			.catch(error => {
+				console.log(error);
+				// обработать ошибку
+				this.renderErrorMessage($cityName);
+		   });
+   }
+
 	createWarningText() {
 		if (this.$form.children[0].id) {
-			this.$form.children[0].remove()
+			this.$form.children[0].remove();
 		}
 		if (!this.$cityName.previousElementSibling) {
 			const warningText = document.createElement('P');
@@ -39,17 +54,15 @@ class Weather {
 	}
 
 	renderWindowWeather(data) {
-		
-		const weatherWindow = document.querySelector('.weather')
+		const weatherWindow = document.querySelector('.weather__container');
 		if (weatherWindow.firstChild) {
 			weatherWindow.firstChild.remove();
 		}
-
 		weatherWindow.insertAdjacentHTML('afterbegin',
 			
 			`<div class = 'weather__contentWrapper'>
 				<div class = 'weather__header'>
-					<h2 class = 'weather__title'>${data.name}</h2>
+					<h1 class = 'weather__title'>${data.name}</h1>
 					<div class = 'weather__tempWrapper'>
 						<div class = 'weather__temp'>
 							${Math.round(data.main.temp - 273)}&deg
@@ -63,64 +76,139 @@ class Weather {
 						</div>
 					</div>
 				</div>
+
 				<div class = 'weather__main'>
 					<div class = 'weather__infoWrapper'
-						<p class = 'weather__info'>Pressure ${data.main.pressure * 0,750} mm Hg </p>
-						<p class = 'weather__info'>Humidity ${data.main.humidity}% </p>
-						<p class = 'weather__info'>Wind speed ${data.wind.speed} km/h </p>
-						<p class = 'weather__info'>Visibility ${data.visibility / 1000} km </p>
+						<p class = 'weather__info'>
+							Pressure ${data.main.pressure * 0, 750} mm Hg
+						</p>
+						<p class = 'weather__info'>
+							Humidity ${data.main.humidity}%
+						</p>
+						<p class = 'weather__info'>
+							Wind speed ${data.wind.speed} km/h
+						</p>
+						<p class = 'weather__info'>
+							Visibility ${data.visibility / 1000} km
+						</p>
 					</div>
 					
-					<div class = 'weather__compassWrapper'>
-						
-						<div class ='weather__arrowWrapper'>
-							<svg class = 'weather__arrow' viewBox="0 0 180 85">
-								<polygon
-									points="98.263,0.056 180,41.85 98.263,83.641 70.662,83.641 122.438,51.866 0,51.866 0,31.611 122.213,31.611 70.605,0 58.263,0.056" />
-							</svg>
+					<div class = 'weather__compass'>
+
+						<div class = 'compass__wrapper'>
+							<h4 class = 'compass__title'>Direction of the wind</h4>
+							<div class ='compass__arrowWrapper'>
+								<svg class = 'compass__arrow' viewBox="0 0 180 85">
+									<polygon
+										points="98.263,0.056 180,41.85 98.263,83.641 70.662,83.641 122.438,51.866 0,51.866 0,31.611 122.213,31.611 70.605,0 58.263,0.056" />
+								</svg>
+							</div>
 						</div>
-						<ul class = 'weather__compassBackground'>
-							<li class = 'weather__north'>N</li>
-							<li class = 'weather__south'>S</li>
-							<li class = 'weather__west'>W</li>
-							<li class = 'weather__east'>E</li>
+
+						<ul class = 'compass__background'>
+							<li class = 'compass__north'>N</li>
+							<li class = 'compass__south'>S</li>
+							<li class = 'compass__west'>W</li>
+							<li class = 'compass__east'>E</li>
 						</ul>
+
 					</div>
 					
 				</div>
 			</div>`
 		)
-		this.renderArrow(data.wind.deg)
+		this.renderWeatherTitle();
+		this.renderWeatherTempWrapper();
+		this.renderWeatherInfo();
+		this.renderCompassBackground();
+		this.renderArrow(data.wind.deg);
+	}
+
+	renderWeatherTitle() {
+		const weatherTitle = document.querySelector('.weather__title');
+		weatherTitle.animate([
+			{
+				transform: 'scale(.1)',
+			},
+			{
+				transform: 'scale(1)',
+				opacity: 1,
+			}
+		  ],{
+			duration:300,
+			iterations: 1,
+			fill:'forwards',
+		  })
+	}
+
+	renderWeatherTempWrapper() {
+		const weatherTempWrapper = document.querySelector('.weather__tempWrapper');
+		weatherTempWrapper.animate([
+			{
+				transform: 'scale(.1) ',
+			},
+			{
+				transform: 'scale(1)',
+				opacity: 1,
+			}
+		], {
+			delay:300,
+			duration:300,
+			iterations: 1,
+			fill:'forwards',
+		  })
+	}
+
+	renderWeatherInfo() {
+		const weatherInfo = document.querySelector('.weather__infoWrapper');
+		weatherInfo.animate([
+			{
+				transform: 'scale(.1)',
+			},
+			{
+				transform: 'scale(1)',
+				opacity: 1,
+			}
+		], {
+			delay:600,  
+			duration:300,
+			iterations: 1,
+			fill:'forwards',
+		  })
+	}
+
+	renderCompassBackground() {
+		const compassWrapper = document.querySelector('.weather__compass');
+		compassWrapper.animate([
+			{
+				transform: 'scale(.1) rotateX(80deg) rotateZ(60deg) rotateY(-45deg)',
+				opacity:0,
+			},
+			{
+				transform: 'scale(1) rotateX(0) rotateZ(0) rotateY(0)',
+				opacity: 1,
+			}
+		], {
+			delay: 900,
+			duration:300,
+			iterations: 1,
+			fill:'forwards',
+		  })
 	}
 
 	renderArrow(data) {
-		const arrow = document.querySelector(".weather__arrow")
+		const arrow = document.querySelector(".compass__arrow");
 		arrow.animate([
 			{ transform: 'rotateZ(0)' },
 			{ transform: `rotateZ(${data}deg)`}
 		  ],{
-			delay:1000,
-			duration:2000,
+			delay:1400,
+			duration:1000,
 			iterations: 1,
 			fill:'forwards',
 		  })
 	}
 	
-	request(url, $cityName) {
-		
-		 fetch(url, {method:'POST'})
-			.then(function (response){
-				return response.json()
-			})
-			.then(response => {
-				this.renderWindowWeather(response);
-			})
-			 .catch(error => {
-				 console.log(error);
-				this.renderErrorMessage($cityName)
-			});
-	}
-
 	renderErrorMessage($cityName) {
 		this.$cityName.insertAdjacentHTML('beforebegin',
 			`<p id = 'form__warning' class = 'form__warning'>

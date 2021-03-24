@@ -3,7 +3,6 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    
 }
 
 html {
@@ -15,7 +14,6 @@ html {
 
 .container {
     height: 100%;
-    margin: 20px auto;
     position: relative;
 }
 
@@ -44,10 +42,6 @@ html {
         top: 0;
         opacity: 1;
     }
-}
-
-.content {
-    height: 30rem;
 }
 
 .form {
@@ -84,7 +78,6 @@ html {
 .form__cityName:hover,
 .form__button:hover{
     background:#B6CDC1;
-
     transition: ease .2s;
 }
 
@@ -100,7 +93,6 @@ html {
         top:0;
         left:-40rem;
         opacity: 0;
-
     }
     100% {
        top:0;
@@ -128,9 +120,9 @@ html {
     }
 }
 
-.weather {
+.weather__container {
     position: relative;
-    margin: 3rem auto;
+    margin: 1rem auto;
     max-width: 70%;
     flex-basis: 60%;
 }
@@ -139,6 +131,20 @@ html {
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.weather__title {
+    list-style: none;
+    display: flex;
+}
+
+.weather__letter {
+    position: relative;
+    opacity: 0;
+}
+
+.weather__title {
+    opacity: 0;
 }
 
 .weather__title,
@@ -152,6 +158,7 @@ html {
     display: flex;
     align-items: center;
     flex-direction: row;
+    opacity: 0;
 }
 
 .weather__temp {
@@ -159,19 +166,18 @@ html {
 }
 
 .weather__iconWrapper {
+    position: relative;
     text-align: center;
 }
 
 .weather__icon {
     filter: drop-shadow(1px 1px 20px #034724);
-
     margin: 0 .5rem;
 }
 
 .weather__description {
     font-size: 1.2rem;
     color: #6A7280;
-
 }
 
 .weather__main {
@@ -183,58 +189,71 @@ html {
     color: #6A7280;
 }
 
-.weather__compassWrapper {
+.weather__infoWrapper,
+.weather__compass {
     position: relative;
-    width: 8rem;
-    height: 8rem;
-    border: 3px dashed #0048BA;
-    border-radius:50%;
+    opacity: 0;
 }
 
-.weather__arrowWrapper {
-    width: 50%;
-    padding-left: 1rem;
-    position: absolute;
-    left: 2rem;
-    top: 1rem;
+.compass__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.compass__title {
+    margin-bottom: 2rem;
+    color: #205F61;
+}
+
+.compass__arrowWrapper {
+    width: 13rem;
+    height: 13rem;
+    position: relative;
+
+    border: 3px dashed #0048BA;
+    border-radius: 50%;
     transform: rotateZ(-90deg);
 }
 
-.weather__arrow {
-    margin-top: 2px;
-    transform-origin: -35% 50%; 
-}
-
-.weather__arrow {
+.compass__arrow {
+    width: 3rem;
+    position: absolute;
+    top: 5.5rem;
+    left: 9.5rem;
+    transform-origin: -110% 55%;
     fill: red;
 }
 
-.weather__compassBackground {
+.compass__background {
     list-style: none;
 }
 
-/* ///////////////compass////////////////// */
-.weather__north,
-.weather__south,
-.weather__west,
-.weather__east {
+.compass__north,
+.compass__south,
+.compass__west,
+.compass__east {
     position: absolute;
 }
-.weather__north{
-    top: -1.9rem;
-    left: 3.2rem;
+
+.compass__north{
+    top: 2.1rem;
+    left: 6.2rem;
 }
-.weather__south {
-    top: 7.8rem;
-    left: 3.4rem;
+
+.compass__south {
+    top: 16.7rem;
+    left: 6.3rem;
 }
-.weather__west {
-    top: 3rem;
-    left: -1.8rem;
+
+.compass__west {
+    top: 9.5rem;
+    left: -1.4rem;
 }
-.weather__east {
-    top: 2.8rem;
-    left: 8rem;
+
+.compass__east {
+    top: 9.5rem;
+    left: 13.5rem;
 }
 
 @media screen and (max-width: 767px) {
@@ -256,7 +275,7 @@ html {
         width: 100%;
         margin: 0 auto 2rem;
     }
-    .weather {
+    .weather__container {
         max-width: 100%;
         margin: 2rem auto;
     }
