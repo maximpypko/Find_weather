@@ -124,8 +124,8 @@ class Weather {
 		anime({
 			targets: '.compass__arrow',
 			rotate: data,
-			duration: 10000,
-			delay: 1500,
+			duration: 7000,
+			delay: 2000,
 			direction: 'backwards',
 			loop: false
 		  });
