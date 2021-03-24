@@ -37,10 +37,6 @@ class Weather {
 			.catch(error => {
 				console.log(error);
 				// обработать ошибку
-				const errorrr = document.createElement('P')
-				errorrr.textContent = error;
-				const container = document.querySelector('.container');
-				container.prepend(errorrr)
 				this.renderErrorMessage($cityName);
 		   });
    }
@@ -121,96 +117,18 @@ class Weather {
 				</div>
 			</div>`
 		)
-		this.renderWeatherTitle();
-		this.renderWeatherTempWrapper();
-		this.renderWeatherInfo();
-		this.renderCompassBackground();
 		this.renderArrow(data.wind.deg);
 	}
 
-	renderWeatherTitle() {
-		const weatherTitle = document.querySelector('.weather__title');
-		weatherTitle.animate([
-			{
-				transform: 'scale(.1)',
-			},
-			{
-				transform: 'scale(1)',
-				opacity: 1,
-			}
-		  ],{
-			duration:300,
-			iterations: 1,
-			fill:'forwards',
-		  })
-	}
-
-	renderWeatherTempWrapper() {
-		const weatherTempWrapper = document.querySelector('.weather__tempWrapper');
-		weatherTempWrapper.animate([
-			{
-				transform: 'scale(.1) ',
-			},
-			{
-				transform: 'scale(1)',
-				opacity: 1,
-			}
-		], {
-			delay:300,
-			duration:300,
-			iterations: 1,
-			fill:'forwards',
-		  })
-	}
-
-	renderWeatherInfo() {
-		const weatherInfo = document.querySelector('.weather__infoWrapper');
-		weatherInfo.animate([
-			{
-				transform: 'scale(.1)',
-			},
-			{
-				transform: 'scale(1)',
-				opacity: 1,
-			}
-		], {
-			delay:600,  
-			duration:300,
-			iterations: 1,
-			fill:'forwards',
-		  })
-	}
-
-	renderCompassBackground() {
-		const compassWrapper = document.querySelector('.weather__compass');
-		compassWrapper.animate([
-			{
-				transform: 'scale(.1) rotateX(80deg) rotateZ(60deg) rotateY(-45deg)',
-				opacity:0,
-			},
-			{
-				transform: 'scale(1) rotateX(0) rotateZ(0) rotateY(0)',
-				opacity: 1,
-			}
-		], {
-			delay: 900,
-			duration:300,
-			iterations: 1,
-			fill:'forwards',
-		  })
-	}
-
 	renderArrow(data) {
-		const arrow = document.querySelector(".compass__arrow");
-		arrow.animate([
-			{ transform: 'rotateZ(0)' },
-			{ transform: `rotateZ(${data}deg)`}
-		  ],{
-			delay:1400,
-			duration:1000,
-			iterations: 1,
-			fill:'forwards',
-		  })
+		anime({
+			targets: '.compass__arrow',
+			rotate: data,
+			duration: 10000,
+			delay: 1500,
+			direction: 'backwards',
+			loop: false
+		  });
 	}
 	
 	renderErrorMessage($cityName) {
