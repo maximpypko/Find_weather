@@ -37,6 +37,10 @@ class Weather {
 			.catch(error => {
 				console.log(error);
 				// обработать ошибку
+				const errorrr = document.createElement('P')
+				errorrr.textContent = error;
+				const container = document.querySelector('.container');
+				container.prepend(errorrr)
 				this.renderErrorMessage($cityName);
 		   });
    }
