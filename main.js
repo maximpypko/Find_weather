@@ -2,6 +2,7 @@ class Weather {
 	$form = document.querySelector('form');
 	$cityName = document.querySelector('.form__cityName');
 	$button = document.querySelector('button');
+	
 	constructor() {
 		this.createRequest();
 	}
@@ -12,8 +13,8 @@ class Weather {
 
 			if (this.$cityName.value.trim()) {
 		
-				if (this.$form.children.length === 3) {
-					this.$form.children[0].remove();
+				if (this.$form.firstElementChild.className === 'form__warning') {
+					this.$form.firstElementChild.remove();
 				}
 				
 				const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.$cityName.value}&appid=4de0326522afcc173524251c3d641fec`;
@@ -31,13 +32,15 @@ class Weather {
 		   .then(function (response){
 			   return response.json();
 		   })
-		   .then(response => {
-			   this.renderWindowWeather(response);
+			.then(response => {
+				if (response.message === 'city not found') {
+					this.renderErrorMessage($cityName);
+				} else {
+					this.renderWindowWeather(response);
+				}
 		   })
 			.catch(error => {
-				console.log(error);
-				// обработать ошибку
-				this.renderErrorMessage($cityName);
+				alert('Oops... Something went wrong. Try later')
 		   });
    }
 
@@ -78,20 +81,23 @@ class Weather {
 				</div>
 
 				<div class = 'weather__main'>
-					<div class = 'weather__infoWrapper'
-						<p class = 'weather__info'>
-							Pressure ${data.main.pressure * 0, 750} mm Hg
-						</p>
-						<p class = 'weather__info'>
-							Humidity ${data.main.humidity}%
-						</p>
-						<p class = 'weather__info'>
-							Wind speed ${data.wind.speed} km/h
-						</p>
-						<p class = 'weather__info'>
-							Visibility ${data.visibility / 1000} km
-						</p>
-					</div>
+					<ul class = 'weather__infoWrapper'>
+						<li class = 'weather__info'>Pressure<span class = 'weather__InfoItem'>
+							${data.main.pressure * 0, 750}mm Hg</span>
+						</li>
+						<li class = 'weather__info'>
+							Humidity
+							<span class = 'weather__InfoItem'> ${data.main.humidity}%</span>
+						</li>
+						<li class = 'weather__info'>
+							Wind speed
+							<span class = 'weather__InfoItem'> ${data.wind.speed}km/h</span>
+						</li>
+						<li class = 'weather__info'>
+							Visibility
+							<span class = 'weather__InfoItem'> ${data.visibility / 1000}km</span>
+						</li>
+					</ul>
 					
 					<div class = 'weather__compass'>
 

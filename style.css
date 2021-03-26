@@ -6,14 +6,104 @@
 }
 
 html {
-    min-height: 100vh;
-    padding: 5%;
     font-size: 15px;
-    background: linear-gradient(45deg, #AEF6F6, #F2C4BC);
+}
+
+body {
+    min-height: 100vh;
+    padding: 5% 5% 0;
+    background-color: #6FEBEB;
+    background-image: radial-gradient(circle, #AED9D9 0%, #33AFAF 60%, #078383 100%);
+    animation: bodyBackground 10s ease-in-out infinite;
 }
 
 .container {
     position: relative;
+}
+
+.clouds__large,
+.clouds__small {
+    position: absolute;
+}
+
+.clouds__large {
+    font-size: 2rem;
+    color: #46B5B5;
+    animation: largeCloudsPosition 60s linear infinite alternate;
+}
+
+.clouds__small{
+    font-size: 1rem;
+    color: #56C5C5;
+    animation: smallCloudsPosition 40s linear infinite alternate-reverse;
+}
+
+@keyframes smallCloudsPosition {
+    0% {
+        transform: translateX(100%) translateZ(0) translateY(0);
+    }
+    100% {
+        transform: translateX(-800%) translateZ(0) translateY(200%);
+    }
+}
+
+@keyframes largeCloudsPosition {
+    0% {
+        transform: translateX(100%) translateZ(0) translateY(0);
+    }
+    100% {
+        transform: translateX(-800%) translateZ(0) translateY(-200%);
+    }
+}
+
+.clouds__large:nth-child(1){
+    top:15rem;
+    left:10rem;
+}
+
+.clouds__large:nth-child(3){
+    top:40rem;
+    left:20rem;
+}
+
+.clouds__large:nth-child(5){
+    top:2rem;
+    left:-1rem;
+}
+
+.clouds__large:nth-child(7){
+    top:40rem;
+    left:70rem;
+}
+
+.clouds__large:nth-child(9){
+    top:20rem;
+    left:55rem;
+}
+
+.clouds__small:nth-child(2){
+    top:6rem;
+    left: 23rem;
+}
+
+.clouds__small:nth-child(4){
+    top:24rem;
+    left: 50rem;
+}
+
+.clouds__small:nth-child(6){
+    top:-1rem;
+    left: 60rem;
+}
+
+.clouds__small:nth-child(8){
+    top:40rem;
+    left: 1rem;
+}
+
+.clouds__small:nth-child(10){
+    top:30rem;
+    left:15rem;
 }
 
 .title {
@@ -59,15 +149,17 @@ html {
 }
 
 .form__errorCity{
+    color: #701414;
     font-size: 1rem;
     text-transform: uppercase;
+    font-weight: bold;
 }
 
 .form__cityName,
 .form__button {
     position: relative;
-    padding: 1rem ;
-    font-size: 1.3rem;
+    padding: 1.5rem ;
+    font-size: 1.5rem;
     border:none;
     background:transparent;
     box-shadow: inset 0 0 7px #004B56;
@@ -76,7 +168,7 @@ html {
 
 .form__cityName:hover,
 .form__button:hover{
-    background:#B6CDC1;
+    background:#3DB2B2;
     transition: ease .2s;
 }
 
@@ -173,7 +265,7 @@ html {
 
 .weather__description {
     font-size: 1.2rem;
-    color: #6A7280;
+    color: #8D5F57;
 }
 
 .weather__main {
@@ -182,7 +274,7 @@ html {
     align-items: center;
     margin-top: 3rem;
     font-size: 1.3rem;
-    color: #6A7280;
+    color: #72443C;
 }
 
 .weather__infoWrapper,
@@ -192,7 +284,12 @@ html {
 }
 
 .weather__infoWrapper {
+    list-style: none;
     animation: animationContent .5s ease-in 1s 1 forwards;
+}
+
+.weather__InfoItem {
+    color: #37404D;
 }
 
 .weather__compass {
@@ -276,48 +373,65 @@ html {
 
 @media screen and (max-width: 767px) {
     html {
-        padding: 5%;
         font-size: 12px;
     }
+    
     .container {
         margin: 0 auto;
     }
+
     .title {
         padding: 0;
         margin-bottom: 2rem;
     }
+
     .form {
         flex-direction: column;
     }
+
     .form__cityName {
         width: 100%;
         margin: 0 auto 2rem;
     }
+
     .weather__container {
         max-width: 100%;
         margin: 2rem auto;
     }
+
     .weather__title{
         margin-right: 1rem;
     }
 }
 
 @media screen and (max-width: 400px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+
     .weather__header {
         flex-direction: column;
-        padding-bottom: 1rem;
+        padding-bottom: 1.8rem;
         border-bottom: 1px solid grey;
     }
+
     .weather__main {
         margin-top: 0;
         flex-direction: column-reverse;
     }
+
     .weather__infoWrapper {
         width: 100%;
-        margin: 2rem auto 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2rem;
+        padding-top: 1.4rem;
         border-top: 1px solid grey;
     }
+
     .weather__compass {
-        margin: 1rem 0;
+        margin: 1.5rem 0;
     }
 }
