@@ -1,4 +1,4 @@
-# Find_weather.
+Find_weather.
 
 Weather finder app with responsive layout.
 
