@@ -1,45 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Weather</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css" />
     <script async src="main.js"></script>
-    <script async src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
-</head>
+    <script
+      async
+      src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"
+    ></script>
+  </head>
 
-<body>
-
+  <body>
     <div class="container">
-        <article class="clouds">
-            <div class="fas fa-cloud clouds__large"></div>
-            <div class="fas fa-cloud clouds__small"></div>
-            <div class="fas fa-cloud clouds__large"></div>
-            <div class="fas fa-cloud clouds__small"></div>
-            <div class="fas fa-cloud clouds__large"></div>
-            <div class="fas fa-cloud clouds__small"></div>
-            <div class="fas fa-cloud clouds__large"></div>
-            <div class="fas fa-cloud clouds__small"></div>
-            <div class="fas fa-cloud clouds__large"></div>
-            <div class="fas fa-cloud clouds__small"></div>
-        </article>
+      <article class="clouds">
+        <div class="fas fa-cloud clouds__large"></div>
+        <div class="fas fa-cloud clouds__small"></div>
+        <div class="fas fa-cloud clouds__large"></div>
+        <div class="fas fa-cloud clouds__small"></div>
+        <div class="fas fa-cloud clouds__large"></div>
+        <div class="fas fa-cloud clouds__small"></div>
+        <div class="fas fa-cloud clouds__large"></div>
+        <div class="fas fa-cloud clouds__small"></div>
+        <div class="fas fa-cloud clouds__large"></div>
+        <div class="fas fa-cloud clouds__small"></div>
+      </article>
 
-        <h1 class="title" style="top: -20rem;">Find out the weather in your city</h1>
-        <section class="content">
+      <h1 class="title" style="top: -20rem">
+        Find out the weather in your city
+      </h1>
+      <section class="content">
+        <form class="form">
+          <input
+            class="form__input"
+            autocomplete="on"
+            placeholder="Enter city name"
+            type="text"
+          />
+          <button class="form__button" type="submit">Search</button>
+        </form>
 
-            <form class="form">
-                <input class="form__cityName" autocomplete="on" placeholder="Enter city name" type="text">
-                <button class="form__button" type="submit">Search</button>
-            </form>
-
-            <div class="weather__container"></div>
-        </section>
+        <div class="weather"></div>
+      </section>
     </div>
-</body>
-
+  </body>
 </html>

@@ -1,0 +1,28 @@
+@mixin animation($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+// @mixin search($name2) {
+//   @-webkit-keyframes #{$name2} {
+//     @content;
+//   }
+//   @-moz-keyframes #{$name2} {
+//     @content;
+//   }
+//   @-ms-keyframes #{$name2} {
+//     @content;
+//   }
+//   @keyframes #{$name2} {
+//     @content;
+//   }
+// }
