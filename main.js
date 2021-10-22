@@ -25,7 +25,7 @@ class Weather {
   }
 
   request(url, $cityName) {
-    // 
+    //
     fetch(url, { method: "POST" })
       .then(function (response) {
         return response.json();
