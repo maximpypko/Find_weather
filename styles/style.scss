@@ -9,7 +9,8 @@
 body {
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   padding: 70px;
   background-color: #6febeb;
   background: linear-gradient(
@@ -26,7 +27,8 @@ body {
 
 .clouds {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   position: absolute;
   top: 0px;
   left: 0;
@@ -243,7 +245,7 @@ body {
   }
   &__infoWrapper,
   &__compass {
-    // position: relative;
+    position: relative;
     opacity: 0;
   }
   &__infoWrapper {
@@ -334,13 +336,13 @@ body {
   }
   .title {
     padding: 0;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
   }
   .form {
     flex-direction: column;
     &__input {
       width: 100%;
-      margin: 0 auto 2rem;
+      margin: 0 auto 1rem;
     }
   }
   .weather {
@@ -349,8 +351,16 @@ body {
       max-width: 100%;
       margin: 2rem auto;
     }
+    &__header {
+      margin-bottom: 2rem;
+    }
     &__title {
       margin-right: 1rem;
+    }
+  }
+  .compass {
+    &__title {
+      width: max-content;
     }
   }
 }

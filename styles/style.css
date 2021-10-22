@@ -8,7 +8,8 @@
 body {
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   padding: 70px;
   background-color: #6febeb;
   background: linear-gradient(45deg, #42d1e7 2%, #a3e5e7 50%, #ebf6ac 100%);
@@ -20,7 +21,8 @@ body {
 
 .clouds {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   position: absolute;
   top: 0px;
   left: 0;
@@ -364,6 +366,7 @@ body {
 }
 
 .weather__infoWrapper, .weather__compass {
+  position: relative;
   opacity: 0;
 }
 
@@ -494,7 +497,7 @@ body {
   }
   .title {
     padding: 0;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
   }
   .form {
     -webkit-box-orient: vertical;
@@ -504,7 +507,7 @@ body {
   }
   .form__input {
     width: 100%;
-    margin: 0 auto 2rem;
+    margin: 0 auto 1rem;
   }
   .weather {
     max-width: 100%;
@@ -513,8 +516,16 @@ body {
     max-width: 100%;
     margin: 2rem auto;
   }
+  .weather__header {
+    margin-bottom: 2rem;
+  }
   .weather__title {
     margin-right: 1rem;
+  }
+  .compass__title {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
   }
 }
 
